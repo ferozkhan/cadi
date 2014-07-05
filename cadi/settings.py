@@ -17,53 +17,36 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '*g%97-ljj77nph8q3$$teat#df4^f5)k^&8z5@+m$2^xk9_$p3'
+SECRET_KEY = 'x@m91o2tavcl!+z^3-n@&5_^=^u7znh^@_ncu1q$b-@0l8todu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
-
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
 
 # Application definition
+ROOT_URLCONF = 'cadi.urls'
 
-INSTALLED_APPS = (
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
+INSTALLED_APPS=(
     'django.contrib.staticfiles',
 )
 
-MIDDLEWARE_CLASSES = (
-    'django.contrib.sessions.middleware.SessionMiddleware',
+MIDDLEWARE_CLASSES=(
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'cadi.urls'
+TEMPLATE_DIRS=(
+    os.path.join(BASE_DIR, 'templates')
+)
+
+STATIC_URL = '/static/'
+
 
 WSGI_APPLICATION = 'cadi.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
-# Internationalization
-# https://docs.djangoproject.com/en/1.6/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
@@ -74,9 +57,3 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.6/howto/static-files/
-
-STATIC_URL = '/static/'
