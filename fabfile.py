@@ -24,3 +24,8 @@ def prepate_and_upload_tar_from_git():
 	put('release.tar.gz', '%(path)s/' % env)
 	run('cd %(path)s && tar -zxvf release.tar.gz' % env, pty=True)
 	local('rm -f release.tar.gz')
+
+
+def deploy():
+	run('cd %(path)s' % env)
+	sudo('pip -r requirements.txt')
