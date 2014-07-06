@@ -1,16 +1,11 @@
 
-
-upstream cadi {
-	server	localhost;
-}
-
 server {
 	listen	80;
 	server_name	localhost;
 	charset	utf-8;
-}
 
-location / {
-	uwsgi_params	cadi;
-	include	/var/www/cadi/uwsgi_params;
+	location / {
+		uwsgi_params	127.0.0.1:8889;
+		include	uwsgi_params;
+	}
 }
