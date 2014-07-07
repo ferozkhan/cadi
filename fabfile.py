@@ -29,8 +29,8 @@ def prepare_and_upload_tar_from_git():
 
 
 def deploy():
-	#setup()
+	setup()
 	prepare_and_upload_tar_from_git()
-	#sudo('pip -r requirements.txt')
-	sudo(' cp %(path)s/conf/cadi-nginx /etc/nginx/sites-enabled/' % env)
-
+	sudo('pip install -r %(path)s/requirements.txt' % env)
+	sudo('cp %(path)s/conf/cadi-nginx /etc/nginx/sites-enabled/' % env)
+	sudo('/etc/init.d/nginx restart')
