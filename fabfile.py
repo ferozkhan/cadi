@@ -14,7 +14,7 @@ def check(service='nginx'):
 
 def setup():
 	sudo('aptitude install -y python-setuptools python-dev')
-	sudo('aptitude install -y zlib1g-dev libfreetype6-dev)
+	sudo('aptitude install -y zlib1g-dev libfreetype6-devi')
 	sudo('aptitude install -y nginx')
 	sudo('easy_install pip')
 	sudo('mkdir -p /var/log/uwsgi/')	
