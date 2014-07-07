@@ -14,10 +14,12 @@ def check(service='nginx'):
 
 def setup():
 	sudo('aptitude install -y python-setuptools')
+	sudo('aptitude install -y nginx')
 	sudo('easy_install pip')
+	sudo('mkdir -p /var/log/uwsgi/')	
 	
-	
-def prepate_and_upload_tar_from_git():
+
+def prepare_and_upload_tar_from_git():
 	local('git archive --format=tar master | gzip > release.tar.gz')
 	sudo('mkdir -p %(path)s' % env, pty=True)
 	sudo('chown -R %(user)s %(path)s' % env)
@@ -27,5 +29,8 @@ def prepate_and_upload_tar_from_git():
 
 
 def deploy():
-	run('cd %(path)s' % env)
-	sudo('pip -r requirements.txt')
+	#setup()
+	prepare_and_upload_tar_from_git()
+	#sudo('pip -r requirements.txt')
+	sudo(' cp %(path)s/conf/cadi-nginx /etc/nginx/sites-enabled/' % env)
+

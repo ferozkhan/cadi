@@ -4,8 +4,8 @@ server {
 	server_name	localhost;
 	charset	utf-8;
 
-	location / {
-		uwsgi_params	localhost:8889;
+	location /cadi/ {
+		uwsgi_pass	localhost:8889;
 		include	uwsgi_params;
 	}
 }
