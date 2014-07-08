@@ -34,5 +34,6 @@ def deploy():
 	prepare_and_upload_tar_from_git()
 	sudo('pip install -r %(path)s/requirements.txt' % env)
 	sudo('cp %(path)s/conf/cadi-nginx /etc/nginx/sites-enabled/' % env)
+	sudo('rm -f /etc/nginx/sites-enabled/default')
 	sudo('uwsgi --enable-thread --ini /var/www/cadi/conf/uwsgi.ini')
 	sudo('/etc/init.d/nginx restart')
