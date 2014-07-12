@@ -17,12 +17,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'x@m91o2tavcl!+z^3-n@&5_^=^u7znh^@_ncu1q$b-@0l8todu'
+SECRET_KEY = os.urandom(25)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'on') == 'on'
-
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = os.environ.get('TEMPLATE_DEBUG', 'on') == 'on'
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Allow all host headers
