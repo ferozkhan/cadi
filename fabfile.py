@@ -2,9 +2,9 @@ import os
 from fabric.api import *
 
 env.project_name = 'cadi'
-env.hosts = os.environ.get('server_ip').split(',')
+env.hosts = os.environ.get('SERVER_IP').split(',')
 env.user = os.environ.get('user')
-env.key_filename = os.environ.get('keys').split(',')
+env.key_filename = os.environ.get('KEYS').split(',')
 env.path = '/var/www/cadi'
 
 
