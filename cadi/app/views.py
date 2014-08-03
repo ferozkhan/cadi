@@ -1,9 +1,9 @@
 
 from django.http import HttpResponseBadRequest, HttpResponse
 from django.views.decorators.http import etag
-from django.shortcuts import render
 from django import forms
 from PIL import Image, ImageDraw
+import hashlib
 
 
 class CadiForm(forms.Form):
@@ -14,7 +14,8 @@ class CadiForm(forms.Form):
 
 
 def generate_etag(request, width, height):
-    return 'cadi: {0}x{1}'.format(width, height)
+    content = 'cadi: {0}x{1}'.format(width, height)
+    return hashlib.sha1(content.decode('utf-8')).hexdigest()
 
 
 @etag(generate_etag)
