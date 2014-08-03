@@ -17,8 +17,8 @@ def setup():
 	sudo('aptitude install -y zlib1g-dev libfreetype6-dev')
 	sudo('aptitude install -y nginx')
 	sudo('easy_install pip')
-	sudo('mkdir -p /var/log/uwsgi/')	
-	
+	sudo('mkdir -p /var/log/uwsgi/')
+
 
 def prepare_and_upload_tar_from_git():
 	local('git archive --format=tar master | gzip > release.tar.gz')
@@ -35,5 +35,5 @@ def deploy():
 	sudo('pip install -r %(path)s/requirements.txt' % env)
 	sudo('cp %(path)s/conf/cadi-nginx /etc/nginx/sites-enabled/' % env)
 	sudo('rm -f /etc/nginx/sites-enabled/default')
-	sudo('uwsgi --enable-thread --ini /var/www/cadi/conf/uwsgi.ini')
+	sudo('uwsgi --enable-thread --touch-reload --ini /var/www/cadi/conf/uwsgi.ini')
 	sudo('/etc/init.d/nginx restart')
